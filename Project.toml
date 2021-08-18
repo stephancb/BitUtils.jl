@@ -1,0 +1,4 @@
+name = "BitUtils"
+uuid = "c320a42c-c42c-4ade-a79e-8f98ab7e8e41"
+authors = ["Stephan C. Buchert <stephanb007@gmail.com>"]
+version = "0.1.0"
