@@ -27,8 +27,8 @@ end
 
  returns a UInt where bit nr `b` is set (and all other bits are zero).
 """
-setbit(b) = UInt(1) << b
-setbit(x, b)  = x | (UInt(1) << b)
+setbit(b, ::Type{T}=UInt) where T = one(T) << b
+setbit(x::T, b) where {T<:Integer} = x | (one(T) << b)
 function setbit!(x, b)
     x[] |= (UInt(1) << b)
 end
