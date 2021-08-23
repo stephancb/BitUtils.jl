@@ -1,7 +1,7 @@
 # BitUtils.jl
 
 BitUtils.jl provides convenience functions for extracting and manipulating single bits of
-integer variables. The MSB is bit nr 0. For completeness also bitvectors are supported. In
+integer variables. The LSB is bit nr 0. For completeness also bitvectors are supported. In
 this case bit nr 0 is the last bit, indexed by `...[end]`. I.e., after applying functions of
 `BitUtils.jl`, `bitstring(a)` returns the same string regardless whether `a` is an
 integer variable or a bitvector.
@@ -15,7 +15,7 @@ specific location.
 The functions are:
 
 * `setbit(b, T=UInt)` returns a value of type `T` where bit nr `b` is set, all other bits
-  are not set. Equivalent to `T(1) << 3` and `T(2)^b`:
+  are zero. Equivalent to `T(1) << 3` and `T(2)^b`:
 
     ```julia
     setbit(3) --> 0x0000000000000008
@@ -49,10 +49,10 @@ The functions are:
     ```
     Generally, Julia functions cannot change the values of scalar variables (except references).
 
-* `bitset(x, b)` returns `true` if bit nr `b` of `x` is set, otherwise zero.
+* `bitset(x, b)` returns `true` if bit nr `b` of `x` is set, otherwise false.
 
 * `setbits(b...)`, `setbits(::Type{T}, b...)`, `setbits(b, ::Type{T}=UInt)` all return a
-  value of type `T` (default `UInt`) where bits nr `b...` (e.g.  2,5,7,31) are set (and
+  value of type `T` (default `UInt`) where bits nr `b...` or collection `b` are set (and
   other bits are zero). For bitvectors use `setbits!`
 
 * `setbits!(x, b...)`, `setbits!(x, b)` sets the bits nr `b...` in `x`.
